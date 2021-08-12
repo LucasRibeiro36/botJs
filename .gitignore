@@ -108,3 +108,5 @@ dist
 .env
 ibm-credentials.env
 /tokens
+/files
+package-lock.json

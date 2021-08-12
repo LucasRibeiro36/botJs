@@ -1,17 +1,11 @@
 "use strict";
-
 const simsimiApi = require("./plugins/simsimiApi");
-
 const _sticker = require("./plugins/sticker");
-
 const answerBrainly = require("./plugins/answerBrainly");
-
 const downloadMedia = require("./plugins/downloadMedia");
-
 const iplocation = require("./plugins/ipLocation");
-
 const transcriber = require("./plugins/transcriber");
-
+const file_name = require("./plugins/fileName");
 const venom = require('venom-bot');
 
 
@@ -35,26 +29,6 @@ function ver_data() {
     return str_data + "\n" + str_hora;
 }
 
-function file_name() {
-    const data = new Date();
-
-    const dia = data.getDate(); // 1-31
-
-    const mes = data.getMonth(); // 0-11 (zero=janeiro)
-
-    const ano4 = data.getFullYear(); // 4 dígitos
-
-    const hora = data.getHours(); // 0-23
-
-    const min = data.getMinutes(); // 0-59
-
-    const seg = data.getSeconds(); // 0-59
-    // Formata a data e a hora (note o mês + 1)
-
-    const str_data = dia + '-' + (mes + 1) + '-' + ano4;
-    const str_hora = hora + ':' + min + ':' + seg;
-    return str_data + '-' + str_hora;
-}
 
 async function startCommandsText(client, message) {
     try {
@@ -77,7 +51,8 @@ async function startCommandsText(client, message) {
                 break;
 
             case "/brainly":
-                await answerBrainly.sendAnswerBrainly(client, message);
+                //await answerBrainly.sendAnswerBrainly(client, message);
+                client.reply(message.from, "Não tenho ainda um bot brainly :(", message.id.toString());
                 break;
             case "/iplocation":
                 let response = await iplocation.searchAddress(message.body.replace("/iplocation", ""));
@@ -114,7 +89,7 @@ async function startCommandsMedia(client, message) {
             break;
 
         default:
-            await downloadMedia.downloadMediaToDirectory(client, message, file_name());
+            await downloadMedia.downloadMediaToDirectory(client, message, file_name.get());
     }
 }
 
