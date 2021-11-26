@@ -52,7 +52,7 @@ async function startCommandsText(client, message) {
 
             case "/brainly":
                 //await answerBrainly.sendAnswerBrainly(client, message);
-                client.reply(message.from, "Não tenho ainda um bot brainly :(", message.id.toString());
+                client.reply(message.from, "Não tenho ainda uma api do brainly :(", message.id.toString());
                 break;
             case "/iplocation":
                 let response = await iplocation.searchAddress(message.body.replace("/iplocation", ""));
