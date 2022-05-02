@@ -110,3 +110,4 @@ ibm-credentials.env
 /tokens
 /files
 package-lock.json
+ibm-credentials.env
